@@ -40,7 +40,7 @@ public class ObjectPickup : MonoBehaviour
         }
     }
 
-    void DropObject()
+    public void DropObject()
     {
         if (heldObject != null)
         {
