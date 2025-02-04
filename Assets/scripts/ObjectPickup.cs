@@ -6,25 +6,24 @@ public class ObjectPickup : MonoBehaviour
     public float pickupRange = 3f; // Distance maximale de ramassage
     public float throwForce = 5f; // Force de lancer (optionnel)
     public Transform holdPosition; // Position o� l'objet est maintenu
-
     private Rigidbody heldObject;
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0)) // Clic gauche
         {
-            if (heldObject == null)
+            if (heldObject == null) // Si rien n'est en main, essayer de ramasser
             {
                 TryPickupObject();
             }
-            else
+            else // Sinon, lâcher l'objet
             {
                 DropObject();
             }
         }
     }
 
-    void TryPickupObject()
+    public void TryPickupObject()
     {
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, pickupRange))
@@ -44,10 +43,18 @@ public class ObjectPickup : MonoBehaviour
     {
         if (heldObject != null)
         {
-            heldObject.useGravity = true;
-            heldObject.linearDamping = 1;
+            Debug.Log("Objet relâché : " + heldObject.name);
+
+            // Désattacher l'objet
             heldObject.transform.parent = null;
+
+            // Réactiver la physique
+            heldObject.useGravity = true;
+            heldObject.isKinematic = false;
+
+            // Supprimer la référence
             heldObject = null;
+            FindAnyObjectByType<DropZone>().isHoldingObject = false; // Indiquer que le joueur n’a plus d’objet
         }
     }
 
