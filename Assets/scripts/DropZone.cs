@@ -10,10 +10,10 @@ public class DropZone : MonoBehaviour
         Debug.Log("rentré");
         if (!contain)
         {
-            Brick = other.gameObject;
             other.attachedRigidbody.isKinematic = true;
             other.transform.position = transform.position;
             other.transform.rotation = transform.rotation;
+            other.transform.SetParent(this.gameObject.transform);
         }
         contain = true;
     }
@@ -21,12 +21,15 @@ public class DropZone : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         contain = true;
+        other.transform.SetParent(this.gameObject.transform);
     }
 
     private void OnTriggerExit(Collider other)
     {
         contain = false;
+        other.transform.SetParent(null);
     }
+
 }
 
 
