@@ -3,7 +3,6 @@ using UnityEngine;
 public class DropZone : MonoBehaviour
 {
 
-    public GameObject Brick;
     private bool contain = false;
     private void OnTriggerEnter(Collider other)
     {

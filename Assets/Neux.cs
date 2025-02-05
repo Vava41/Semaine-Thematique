@@ -22,9 +22,16 @@ public class Neux : MonoBehaviour
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.startWidth = lineWidth;  // Définir l'épaisseur au début
+        lineRenderer.endWidth = lineWidth;    // Définir l'épaisseur à la fin
+
         if (lineMaterial != null)
         {
             lineRenderer.material = lineMaterial;
+        }
+        foreach (Neux neux in list)
+        {
+            AddNeux(neux);
         }
     }
 
@@ -55,13 +62,13 @@ public class Neux : MonoBehaviour
 
     public void destroy()
     {
-        if (gameObject.GetComponent<DropZone>().Brick == null)
+        if (gameObject.GetComponent<DropZone>().transform.GetChild(0) == null)
         {
             Debug.Log("Brick null !");
         }
         else
         {
-            Destroy(gameObject.GetComponent<DropZone>().Brick);
+            Destroy(gameObject.GetComponent<DropZone>().transform.GetChild(0).gameObject);
         }
     }
 
@@ -77,7 +84,6 @@ public class Neux : MonoBehaviour
     }
     public void AddNeux(Neux neux)
     {
-        list.Add(neux);
         DrawLineBetweenPoints(transform.position, neux.transform.position);
     }
     // Update is called once per frame
