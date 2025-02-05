@@ -2,17 +2,31 @@ using UnityEngine;
 
 public class DropZone : MonoBehaviour
 {
-    public ObjectPickup OP;
+
+    public GameObject Brick;
+    private bool contain = false;
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("bloc"))
+        Debug.Log("rentré");
+        if (!contain)
         {
-            OP.DropObject();
-            Debug.Log("rentré");
-            other.attachedRigidbody.useGravity = false;
+            Brick = other.gameObject;
             other.attachedRigidbody.isKinematic = true;
             other.transform.position = transform.position;
             other.transform.rotation = transform.rotation;
         }
+        contain = true;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        contain = true;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        contain = false;
     }
 }
+
+
