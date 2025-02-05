@@ -54,7 +54,7 @@ public class ObjectPickup : MonoBehaviour
 
             // Supprimer la référence
             heldObject = null;
-            FindAnyObjectByType<DropZone>().isHoldingObject = false; // Indiquer que le joueur n’a plus d’objet
+            //FindAnyObjectByType<DropZone>().isHoldingObject = false; // Indiquer que le joueur n’a plus d’objet
         }
     }
 
