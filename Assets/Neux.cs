@@ -38,16 +38,18 @@ public class Neux : MonoBehaviour
 
     public GameObject GetBrick()//retourne la Brick possèder
     {
-        return gameObject.AddComponent<DropZone>().transform.getChild(0);
+        return gameObject.AddComponent<DropZone>().transform.GetChild(0).gameObject;   
         
     }
     public void SetBrick(GameObject brick)//modifie la Brick possèder
     {
-        gameObject.AddComponent<DropZone>().transform.getChild(0) = brick;
+        gameObject.AddComponent<DropZone>().transform.GetChild(0).gameObject.transform.SetParent(null);
+
+        brick.transform.SetParent(this.gameObject.AddComponent<DropZone>().gameObject.transform);
     }
     public void DestroyBrickFiliation()
     {
-        gameObject.AddComponent<DropZone>().transform.getChild(0).transform.SetParent(null);
+        gameObject.AddComponent<DropZone>().transform.GetChild(0).gameObject.transform.SetParent(null);
     }
 
 
@@ -71,7 +73,7 @@ public class Neux : MonoBehaviour
     {
         list[i].MoveTargetTowardsSelf(transform.position);
         list[i].SetBrick(this.GetBrick());
-        DestroyBrick();
+        DestroyBrickFiliation();
     }
     public void AddNeux(Neux neux)
     {
