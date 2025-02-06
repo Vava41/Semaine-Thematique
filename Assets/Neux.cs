@@ -9,6 +9,7 @@ using static UnityEngine.GraphicsBuffer;
 public class Neux : MonoBehaviour
 {
     public bool test;
+    private GameObject test_game;
 
     private LineRenderer lineRenderer;
 
@@ -47,10 +48,13 @@ public class Neux : MonoBehaviour
     {
         if (drapeau_MoveTargetTowardsSelf)
         {
-            GetBrick().transform.position=Vector3.SmoothDamp(GetBrick().transform.position, Target_MoveTargetTowardsSelf, ref velocity, smoothTime);
+            test_game.transform.position=Vector3.SmoothDamp(test_game.transform.position, Target_MoveTargetTowardsSelf, ref velocity, smoothTime);
         }
     }
-
+    public string addColor()
+    {
+        return gameObject.AddComponent<DropZone>().couleur;
+    }
     void DrawLineBetweenPoints(Vector3 start, Vector3 end)
     {
         // Définir les positions de départ et de fin de la ligne
@@ -74,11 +78,13 @@ public class Neux : MonoBehaviour
             gameObject.transform.GetChild(0).gameObject.transform.SetParent(null);
             brick.transform.SetParent(gameObject.transform);
             brick.transform.SetAsFirstSibling(); // Place l'enfant en première position
-            print("fais");
         }
-        print("fais_j");
+        else
+        {
+            brick.transform.SetParent(gameObject.transform);
+            brick.transform.SetAsFirstSibling(); // Place l'enfant en première position
 
-        brick.transform.SetParent(gameObject.transform);
+        }
     }
     public void DestroyBrickFiliation()//Enlève la Brick de la filiation
     {
@@ -105,13 +111,13 @@ public class Neux : MonoBehaviour
     {
         drapeau_MoveTargetTowardsSelf = true;
         Target_MoveTargetTowardsSelf = target;
+        test_game = GetBrick();
     }
     public void LanceMove(int i)//Prend le numéraux du neux relier et envoie la Brick vers vous
     {
         list[i].MoveTargetTowardsSelf(transform.position);
         this.SetBrick(list[i].GetBrick());
-        //list[i].DestroyBrickFiliation();
-
+        list[i].DestroyBrickFiliation();
     }
     public void AddNeux(Neux neux)
     {
