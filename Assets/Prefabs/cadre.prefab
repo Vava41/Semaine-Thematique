@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1310236329528809604}
-  - component: {fileID: 4466865116680836074}
+  - component: {fileID: 773252214401776365}
   - component: {fileID: 6788122430425765464}
   m_Layer: 0
   m_Name: cadre
@@ -34,8 +34,8 @@ Transform:
   - {fileID: 6025761994903149611}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4466865116680836074
-BoxCollider:
+--- !u!135 &773252214401776365
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -53,8 +53,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.80141556, y: 1.3668519, z: 1.3958071}
-  m_Center: {x: 0.5039516, y: 0.00482697, z: -0.004826851}
+  m_Radius: 0.7
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6788122430425765464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,12 +67,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4491db3c59d7d204eba5579a39e1e97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  storedPosition: {fileID: 0}
-  playerCamera: {fileID: 0}
-  interactRange: 3
-  OP: {fileID: 0}
-  holdPosition: {fileID: 0}
-  isHoldingObject: 0
+  correct: 0
+  couleur: 
 --- !u!1 &2723165739696338782
 GameObject:
   m_ObjectHideFlags: 0
