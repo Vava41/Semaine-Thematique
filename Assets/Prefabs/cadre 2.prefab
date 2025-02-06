@@ -11,9 +11,7 @@ GameObject:
   - component: {fileID: 1310236329528809604}
   - component: {fileID: 4466865116680836074}
   - component: {fileID: 6788122430425765464}
-  - component: {fileID: 6905494237799987512}
   - component: {fileID: 1401849645104020890}
-  - component: {fileID: 255881100860691183}
   m_Layer: 0
   m_Name: cadre 2
   m_TagString: Untagged
@@ -71,23 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4491db3c59d7d204eba5579a39e1e97e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6905494237799987512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862978871568644452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c299c4bf711b99d44a94f3e4a9546dd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  test: 0
-  lineMaterial: {fileID: 0}
-  lineWidth: 0.1
-  smoothTime: 0.3
-  list: []
+  couleur: 
 --- !u!120 &1401849645104020890
 LineRenderer:
   serializedVersion: 2
@@ -195,24 +177,6 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &255881100860691183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1862978871568644452}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c299c4bf711b99d44a94f3e4a9546dd0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  test: 0
-  lineMaterial: {fileID: 0}
-  lineWidth: 0.1
-  smoothTime: 2
-  list:
-  - {fileID: 0}
 --- !u!1 &2723165739696338782
 GameObject:
   m_ObjectHideFlags: 0

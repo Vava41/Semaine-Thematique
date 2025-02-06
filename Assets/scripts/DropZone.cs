@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DropZone : MonoBehaviour
 {
-    private bool contain = false;
+    public bool contain = false;
     public string couleur;
     private void OnTriggerEnter(Collider other)
     {

@@ -8,11 +8,11 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Neux : MonoBehaviour
 {
+    private List<LineRenderer> lineRenderers;   
     public bool test;
     private GameObject test_game;
-
-    private LineRenderer lineRenderer;
-
+    public int Number_sol;
+    private static bool isrun=false;
     // Propriétés publiques pour modifier la ligne dans l'inspecteur
     public Material lineMaterial;    // Matériau de la ligne
     public float lineWidth = 0.1f;   // Épaisseur de la ligne
@@ -26,26 +26,34 @@ public class Neux : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.startWidth = lineWidth;  // Définir l'épaisseur au début
-        lineRenderer.endWidth = lineWidth;    // Définir l'épaisseur à la fin
+   // Définir l'épaisseur à la fin
 
-        if (lineMaterial != null)
-        {
-            lineRenderer.material = lineMaterial;
-        }
+
         foreach (Neux neux in list)
         {
             AddNeux(neux);
         }
         if (test)
         {
-            LanceMove(0);
+            LanceMove(list[0]);
         }
     }
+
+    public bool asBrick()
+    {
+        return (gameObject.transform.childCount > 0 && gameObject.transform.GetChild(0).tag == "Brick");
+    }
+
+    /*public string addColorNeux(Neux neux_)
+    {
+        list
+    }*/
+
+
     // Update is called once per frame
     void Update()
     {
+        Gravity();
         if (drapeau_MoveTargetTowardsSelf)
         {
             test_game.transform.position=Vector3.SmoothDamp(test_game.transform.position, Target_MoveTargetTowardsSelf, ref velocity, smoothTime);
@@ -57,6 +65,14 @@ public class Neux : MonoBehaviour
     }
     void DrawLineBetweenPoints(Vector3 start, Vector3 end)
     {
+        GameObject lineObj = new GameObject();
+        LineRenderer lineRenderer = lineObj.AddComponent<LineRenderer>();
+        if (lineMaterial != null)
+        {
+            lineRenderer.material = lineMaterial;
+        }
+        lineRenderer.startWidth = lineWidth;  // Définir l'épaisseur au début
+        lineRenderer.endWidth = lineWidth;
         // Définir les positions de départ et de fin de la ligne
         lineRenderer.positionCount = 2;   // La ligne a 2 points (start et end)
         lineRenderer.SetPosition(0, start);   // Point de départ
@@ -113,15 +129,35 @@ public class Neux : MonoBehaviour
         Target_MoveTargetTowardsSelf = target;
         test_game = GetBrick();
     }
-    public void LanceMove(int i)//Prend le numéraux du neux relier et envoie la Brick vers vous
+    public void LanceMove(Neux neu)//Prend le numéraux du neux relier et envoie la Brick vers vous
     {
-        list[i].MoveTargetTowardsSelf(transform.position);
-        this.SetBrick(list[i].GetBrick());
-        list[i].DestroyBrickFiliation();
+        if (!isrun)
+        {
+            isrun = true;
+            neu.MoveTargetTowardsSelf(transform.position);
+            this.SetBrick(neu.GetBrick());
+            neu.DestroyBrickFiliation();
+            isrun = false;
+        }
     }
     public void AddNeux(Neux neux)
     {
         DrawLineBetweenPoints(transform.position, neux.transform.position);
     }
-
+    public void Gravity()//A chaque moments
+    {
+        if (!asBrick() )
+        {
+            foreach (var item in list)
+            {
+                if (item.Number_sol > Number_sol)
+                {
+                    if (item.asBrick())
+                    {
+                        LanceMove(item);
+                    }
+                }
+            }
+        }
+    }
 }
