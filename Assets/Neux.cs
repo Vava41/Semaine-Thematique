@@ -25,8 +25,6 @@ public class Neux : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
-
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.startWidth = lineWidth;  // Définir l'épaisseur au début
         lineRenderer.endWidth = lineWidth;    // Définir l'épaisseur à la fin
@@ -39,7 +37,7 @@ public class Neux : MonoBehaviour
         {
             AddNeux(neux);
         }
-        if (test)
+        if (gameObject.transform.childCount < 1 || gameObject.transform.GetChild(0).tag != "Brick")
         {
             LanceMove(0);
         }
@@ -75,7 +73,11 @@ public class Neux : MonoBehaviour
         {
             gameObject.transform.GetChild(0).gameObject.transform.SetParent(null);
             brick.transform.SetParent(gameObject.transform);
+            brick.transform.SetAsFirstSibling(); // Place l'enfant en première position
+            print("fais");
         }
+        print("fais_j");
+
         brick.transform.SetParent(gameObject.transform);
     }
     public void DestroyBrickFiliation()//Enlève la Brick de la filiation
@@ -108,7 +110,7 @@ public class Neux : MonoBehaviour
     {
         list[i].MoveTargetTowardsSelf(transform.position);
         this.SetBrick(list[i].GetBrick());
-        list[i].DestroyBrickFiliation();
+        //list[i].DestroyBrickFiliation();
 
     }
     public void AddNeux(Neux neux)
