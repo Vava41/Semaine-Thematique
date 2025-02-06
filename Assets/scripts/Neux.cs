@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using NUnit.Framework;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -8,11 +9,13 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Neux : MonoBehaviour
 {
+    //private Timer timer = -1;
+    public int timer_max;
     private List<LineRenderer> lineRenderers;
     public bool test;
     private GameObject test_game;
     public int Number_sol;
-
+    private static bool isrun = false;
     // Propriétés publiques pour modifier la ligne dans l'inspecteur
     public Material lineMaterial;    // Matériau de la ligne
     public float lineWidth = 0.1f;   // Épaisseur de la ligne
@@ -20,7 +23,7 @@ public class Neux : MonoBehaviour
 
     public float smoothTime = 0.3f; // Temps pour atteindre la position
     private Vector3 velocity = Vector3.zero;
-    public List<Neux> list;
+    public List<Neux> liste;
     private bool drapeau_MoveTargetTowardsSelf = false;
     private Vector3 Target_MoveTargetTowardsSelf;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,22 +32,46 @@ public class Neux : MonoBehaviour
         // Définir l'épaisseur à la fin
 
 
-        foreach (Neux neux in list)
+        foreach (Neux neux in liste)
         {
             AddNeux(neux);
         }
         if (test)
         {
-            LanceMove(0);
+            LanceMove(liste[0]);
         }
     }
-    // Update is called once per frame
+
+    public bool asBrick()
+    {
+        return (gameObject.transform.childCount > 0 && gameObject.transform.GetChild(0).tag == "Brick");
+    }
+
+    /*public string addColorNeux(Neux neux_)
+    {
+        list
+    }*/
+
+
+    // Update is called once per framet
     void Update()
     {
+        Gravity();
         if (drapeau_MoveTargetTowardsSelf)
         {
             test_game.transform.position = Vector3.SmoothDamp(test_game.transform.position, Target_MoveTargetTowardsSelf, ref velocity, smoothTime);
+            //if (timer == 0)
+            //{
+            //    timer += Time.deltaTime;
+            //    if (timer > timer_max)
+            //    {
+            //        test_game.transform.position = Target_MoveTargetTowardsSelf;
+            //        timer = -1;
+            //        isrun = false;
+            //    }
+            //}
         }
+        Check();
     }
     public string addColor()
     {
@@ -116,23 +143,46 @@ public class Neux : MonoBehaviour
         Target_MoveTargetTowardsSelf = target;
         test_game = GetBrick();
     }
-    public void LanceMove(int i)//Prend le numéraux du neux relier et envoie la Brick vers vous
+    public void LanceMove(Neux neu)//Prend le numéraux du neux relier et envoie la Brick vers vous
     {
-        list[i].MoveTargetTowardsSelf(transform.position);
-        this.SetBrick(list[i].GetBrick());
-        list[i].DestroyBrickFiliation();
+        if (!isrun)
+        {
+            //ytimer = 0;
+            isrun = true;
+            neu.MoveTargetTowardsSelf(transform.position);
+            this.SetBrick(neu.GetBrick());
+            neu.DestroyBrickFiliation();
+        }
     }
     public void AddNeux(Neux neux)
     {
         DrawLineBetweenPoints(transform.position, neux.transform.position);
     }
-    public void Gravity()
+    public void Gravity()//A chaque moments
     {
-        foreach (var item in list)
+        if (!asBrick())
         {
-            if (item.Number_sol > Number_sol)
+            foreach (var item in liste)
             {
-                // LanceMove(item);
+                if (item.Number_sol > Number_sol)
+                {
+                    if (item.asBrick())
+                    {
+                        LanceMove(item);
+                    }
+                }
+            }
+        }
+    }
+
+    void Check()
+    {
+        for (int i = 0; i < liste.Capacity; i++)
+        {
+            if (liste[i].addColor() == "rouge" && addColor() == "rouge")
+            {
+                liste[i].destroy();
+                destroy();
             }
         }
     }
