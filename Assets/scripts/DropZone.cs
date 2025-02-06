@@ -2,18 +2,16 @@ using UnityEngine;
 
 public class DropZone : MonoBehaviour
 {
-
     private bool contain = false;
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("rentré");
         if (!contain)
         {
-            other.attachedRigidbody.isKinematic = true;
-            other.transform.position = transform.position;
-            other.transform.rotation = transform.rotation;
             other.transform.SetParent(this.gameObject.transform);
         }
+        other.transform.position = transform.position;
+        other.transform.rotation = transform.rotation;
         contain = true;
     }
 
@@ -28,7 +26,4 @@ public class DropZone : MonoBehaviour
         contain = false;
         other.transform.SetParent(null);
     }
-
 }
-
-

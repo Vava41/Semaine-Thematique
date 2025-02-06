@@ -21,7 +21,7 @@ public class Neux : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     public List<Neux> list;
     private bool drapeau_MoveTargetTowardsSelf=false;
-    private Vector3 Vector3_MoveTargetTowardsSelf;
+    private Vector3 Target_MoveTargetTowardsSelf;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,7 +37,7 @@ public class Neux : MonoBehaviour
         {
             AddNeux(neux);
         }
-        if (gameObject.transform.childCount < 1 || gameObject.transform.GetChild(0).tag != "Brick")
+        if (test)
         {
             LanceMove(0);
         }
@@ -47,7 +47,7 @@ public class Neux : MonoBehaviour
     {
         if (drapeau_MoveTargetTowardsSelf)
         {
-            Vector3.SmoothDamp(Vector3_MoveTargetTowardsSelf, transform.position, ref velocity, smoothTime);
+            GetBrick().transform.position=Vector3.SmoothDamp(GetBrick().transform.position, Target_MoveTargetTowardsSelf, ref velocity, smoothTime);
         }
     }
 
@@ -104,7 +104,7 @@ public class Neux : MonoBehaviour
     public void MoveTargetTowardsSelf(Vector3 target)
     {
         drapeau_MoveTargetTowardsSelf = true;
-        Vector3_MoveTargetTowardsSelf = target;
+        Target_MoveTargetTowardsSelf = target;
     }
     public void LanceMove(int i)//Prend le numéraux du neux relier et envoie la Brick vers vous
     {
