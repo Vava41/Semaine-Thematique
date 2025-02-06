@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading;
 using NUnit.Framework;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -8,6 +9,9 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Neux : MonoBehaviour
 {
+    public bool var=true;
+    private float timer=-1;
+    public int timer_max;
     private List<LineRenderer> lineRenderers;   
     public bool test;
     private GameObject test_game;
@@ -50,13 +54,33 @@ public class Neux : MonoBehaviour
     }*/
 
 
-    // Update is called once per frame
+    // Update is called once per framet
     void Update()
     {
         Gravity();
         if (drapeau_MoveTargetTowardsSelf)
         {
+            print("drapeau");
+            print("timert : " + timer);  
             test_game.transform.position=Vector3.SmoothDamp(test_game.transform.position, Target_MoveTargetTowardsSelf, ref velocity, smoothTime);
+            if (var)
+            {
+                timer = 0;
+                var=false;
+            }
+            if (timer > -1)
+            {
+                print("timer");
+
+                timer += Time.deltaTime;
+                if (timer > timer_max)
+                {
+                    print("timer_finie");
+                    test_game.transform.position = Target_MoveTargetTowardsSelf;
+                    timer = -1;
+                    isrun=false;
+                }
+            }
         }
     }
     public string addColor()
@@ -133,11 +157,11 @@ public class Neux : MonoBehaviour
     {
         if (!isrun)
         {
+            timer = 0;
             isrun = true;
             neu.MoveTargetTowardsSelf(transform.position);
             this.SetBrick(neu.GetBrick());
             neu.DestroyBrickFiliation();
-            isrun = false;
         }
     }
     public void AddNeux(Neux neux)

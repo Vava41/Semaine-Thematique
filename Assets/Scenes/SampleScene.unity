@@ -234,6 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c299c4bf711b99d44a94f3e4a9546dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer_max: 10
   test: 0
   Number_sol: 1
   lineMaterial: {fileID: 0}
@@ -732,6 +733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c299c4bf711b99d44a94f3e4a9546dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer_max: 10
   test: 0
   Number_sol: 3
   lineMaterial: {fileID: 0}
@@ -1228,8 +1230,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c299c4bf711b99d44a94f3e4a9546dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timer_max: 10
   test: 0
-  Number_sol: 2
+  Number_sol: 3
   lineMaterial: {fileID: 0}
   lineWidth: 0.1
   smoothTime: 2
