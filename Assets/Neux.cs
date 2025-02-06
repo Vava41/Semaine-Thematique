@@ -8,6 +8,8 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Neux : MonoBehaviour
 {
+    public bool test;
+
     private LineRenderer lineRenderer;
 
     // Propriétés publiques pour modifier la ligne dans l'inspecteur
@@ -18,9 +20,13 @@ public class Neux : MonoBehaviour
     public float smoothTime = 0.3f; // Temps pour atteindre la position
     private Vector3 velocity = Vector3.zero;
     public List<Neux> list;
+    private bool drapeau_MoveTargetTowardsSelf=false;
+    private Vector3 Vector3_MoveTargetTowardsSelf;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.startWidth = lineWidth;  // Définir l'épaisseur au début
         lineRenderer.endWidth = lineWidth;    // Définir l'épaisseur à la fin
@@ -32,6 +38,18 @@ public class Neux : MonoBehaviour
         foreach (Neux neux in list)
         {
             AddNeux(neux);
+        }
+        if (test)
+        {
+            LanceMove(0);
+        }
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        if (drapeau_MoveTargetTowardsSelf)
+        {
+            Vector3.SmoothDamp(Vector3_MoveTargetTowardsSelf, transform.position, ref velocity, smoothTime);
         }
     }
 
@@ -45,50 +63,57 @@ public class Neux : MonoBehaviour
 
     public GameObject GetBrick()//retourne la Brick possèder
     {
-        return gameObject.AddComponent<DropZone>().transform.GetChild(0).gameObject;   
-        
+        if (gameObject.transform.childCount > 0 && gameObject.transform.GetChild(0).tag == "Brick")
+        {
+            return gameObject.transform.GetChild(0).gameObject;
+        }
+        return null;
     }
-    public void SetBrick(GameObject brick)//modifie la Brick possèder
+    public void SetBrick(GameObject brick)//prend la Brick et la mais à la place de la Brick précédente, sans détruir la Brick préssédente
     {
-        gameObject.AddComponent<DropZone>().transform.GetChild(0).gameObject.transform.SetParent(null);
-
-        brick.transform.SetParent(this.gameObject.AddComponent<DropZone>().gameObject.transform);
+        if (gameObject.transform.childCount > 0 && gameObject.transform.GetChild(0).tag == "Brick")
+        {
+            gameObject.transform.GetChild(0).gameObject.transform.SetParent(null);
+            brick.transform.SetParent(gameObject.transform);
+        }
+        brick.transform.SetParent(gameObject.transform);
     }
-    public void DestroyBrickFiliation()
+    public void DestroyBrickFiliation()//Enlève la Brick de la filiation
     {
-        gameObject.AddComponent<DropZone>().transform.GetChild(0).gameObject.transform.SetParent(null);
+        if (gameObject.transform.childCount > 0 && gameObject.transform.GetChild(0).tag == "Brick")
+        {
+            gameObject.transform.GetChild(0).gameObject.transform.SetParent(null);
+        }
     }
 
 
     public void destroy()
     {
-        if (gameObject.GetComponent<DropZone>().transform.GetChild(0) == null)
+        if (gameObject.transform.childCount > 0 && gameObject.transform.GetChild(0).tag == "Brick")
         {
-            Debug.Log("Brick null !");
+            Destroy(gameObject.transform.GetChild(0).gameObject);
         }
         else
         {
-            Destroy(gameObject.GetComponent<DropZone>().transform.GetChild(0).gameObject);
+            Debug.Log("Brick null ou pas une brick !");
         }
     }
 
     public void MoveTargetTowardsSelf(Vector3 target)
     {
-        Vector3.SmoothDamp(target, transform.position, ref velocity, smoothTime);
+        drapeau_MoveTargetTowardsSelf = true;
+        Vector3_MoveTargetTowardsSelf = target;
     }
-    public void LanceMove(int i)//Prend le numéraux du neux relier et envoie la Brick
+    public void LanceMove(int i)//Prend le numéraux du neux relier et envoie la Brick vers vous
     {
         list[i].MoveTargetTowardsSelf(transform.position);
-        list[i].SetBrick(this.GetBrick());
-        DestroyBrickFiliation();
+        this.SetBrick(list[i].GetBrick());
+        list[i].DestroyBrickFiliation();
+
     }
     public void AddNeux(Neux neux)
     {
         DrawLineBetweenPoints(transform.position, neux.transform.position);
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }
