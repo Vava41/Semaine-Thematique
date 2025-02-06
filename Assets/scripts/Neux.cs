@@ -8,10 +8,10 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Neux : MonoBehaviour
 {
+    private List<LineRenderer> lineRenderers;
     public bool test;
     private GameObject test_game;
-
-    private LineRenderer lineRenderer;
+    public int Number_sol;
 
     // Propriétés publiques pour modifier la ligne dans l'inspecteur
     public Material lineMaterial;    // Matériau de la ligne
@@ -26,14 +26,9 @@ public class Neux : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        lineRenderer = GetComponent<LineRenderer>();
-        lineRenderer.startWidth = lineWidth;  // Définir l'épaisseur au début
-        lineRenderer.endWidth = lineWidth;    // Définir l'épaisseur à la fin
+        // Définir l'épaisseur à la fin
 
-        if (lineMaterial != null)
-        {
-            lineRenderer.material = lineMaterial;
-        }
+
         foreach (Neux neux in list)
         {
             AddNeux(neux);
@@ -57,6 +52,14 @@ public class Neux : MonoBehaviour
     }
     void DrawLineBetweenPoints(Vector3 start, Vector3 end)
     {
+        GameObject lineObj = new GameObject();
+        LineRenderer lineRenderer = lineObj.AddComponent<LineRenderer>();
+        if (lineMaterial != null)
+        {
+            lineRenderer.material = lineMaterial;
+        }
+        lineRenderer.startWidth = lineWidth;  // Définir l'épaisseur au début
+        lineRenderer.endWidth = lineWidth;
         // Définir les positions de départ et de fin de la ligne
         lineRenderer.positionCount = 2;   // La ligne a 2 points (start et end)
         lineRenderer.SetPosition(0, start);   // Point de départ
@@ -123,5 +126,14 @@ public class Neux : MonoBehaviour
     {
         DrawLineBetweenPoints(transform.position, neux.transform.position);
     }
-
+    public void Gravity()
+    {
+        foreach (var item in list)
+        {
+            if (item.Number_sol > Number_sol)
+            {
+                // LanceMove(item);
+            }
+        }
+    }
 }
