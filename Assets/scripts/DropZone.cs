@@ -10,6 +10,8 @@ public class DropZone : MonoBehaviour
         if (!contain)
         {
             other.transform.SetParent(this.gameObject.transform);
+            other.transform.position = transform.position;
+            other.transform.rotation = transform.rotation;
         }
     }
 
