@@ -10,8 +10,8 @@ public class DropZone : MonoBehaviour
         if (!contain)
         {
             other.transform.SetParent(this.gameObject.transform);
-            other.attachedRigidbody.isKinematic = true;
-            other.attachedRigidbody.useGravity = false;
+            other.GetComponentInParent<Rigidbody>().isKinematic = true;
+            other.GetComponentInParent<Rigidbody>().useGravity = false;
         }
     }
 
@@ -29,8 +29,8 @@ public class DropZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        other.attachedRigidbody.isKinematic = false;
-        other.attachedRigidbody.useGravity = true;
+        other.GetComponentInParent<Rigidbody>().isKinematic = false;
+        other.GetComponentInParent<Rigidbody>().useGravity = true;
         contain = false;
         other.transform.SetParent(null);
     }

@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(LineRenderer))]
 
+
 public class Neux : MonoBehaviour
 {
     public bool isWillDestroy = false;
@@ -59,11 +60,13 @@ public class Neux : MonoBehaviour
     // Update is called once per framet
     void Update()
     {
+        Gravity();
         if (drapeau_MoveTargetTowardsSelf)
         {
             if (timer > -1)
             {
                 test_game.transform.position = Vector3.SmoothDamp(test_game.transform.position, Target_MoveTargetTowardsSelf, ref velocity, smoothTime);
+
                 timer += Time.deltaTime;
                 if (timer > timer_max)
                 {
@@ -78,7 +81,7 @@ public class Neux : MonoBehaviour
     }
     public string addColor()
     {
-        return gameObject.AddComponent<DropZone>().couleur;
+        return gameObject.GetComponent<DropZone>().couleur;
     }
     void DrawLineBetweenPoints(Vector3 start, Vector3 end)
     {
@@ -133,14 +136,17 @@ public class Neux : MonoBehaviour
     }
     public void destroy()
     {
-        if (gameObject.transform.childCount > 0 && gameObject.transform.GetChild(0).tag == "Brick")
+        if (!isRun)
         {
-            Destroy(gameObject.transform.GetChild(0).gameObject);
+            foreach (Transform game in transform)
+            {
+                if (game.tag != "Sphère")
+                {
+                    Destroy(game.gameObject);
+                }
+            }
         }
-        else
-        {
-            Debug.Log("Brick null ou pas une brick !");
-        }
+
     }
 
     public void MoveTargetTowardsSelf(Vector3 target, Neux cibleNeux)
@@ -152,10 +158,9 @@ public class Neux : MonoBehaviour
     }
     public void LanceMove(Neux neu)//Prend le numéraux du neux relier et envoie la Brick vers vous
     {
-        if (!neu.isRun)
+        if (!isRun && !neu.isRun)
         {
             isRun = true;
-            print("isrun : " + neu.isRun);
             neu.isRun = true;
             neu.timer = 0;
             neu.MoveTargetTowardsSelf(transform.position, this);
@@ -165,7 +170,7 @@ public class Neux : MonoBehaviour
     }
     public bool isDestroyFutur()
     {
-        if (asBrick())
+        if (asBrick() && !isRun)
         {
             if (addColor() == "rouge")
             {
@@ -231,16 +236,14 @@ public class Neux : MonoBehaviour
     }
     public void Gravity()//A chaque moments
     {
-        if (!asBrick() && !isRun)
+        if (!asBrick())
         {
-            print("asBrick");
             foreach (var item in liste)
             {
                 if (item.Number_sol > Number_sol)
                 {
                     if (item.asBrick())
                     {
-                        print("LanceMouve");
                         LanceMove(item);
                     }
                 }
