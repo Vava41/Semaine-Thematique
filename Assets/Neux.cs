@@ -9,6 +9,9 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Neux : MonoBehaviour
 {
+    public bool isWillDestroy=false;
+    public bool isRun=false;
+    public Neux cibleNeux;
     public bool var=true;
     private float timer=-1;
     public int timer_max;
@@ -16,7 +19,6 @@ public class Neux : MonoBehaviour
     public bool test;
     private GameObject test_game;
     public int Number_sol;
-    private static bool isrun=false;
     // Propriétés publiques pour modifier la ligne dans l'inspecteur
     public Material lineMaterial;    // Matériau de la ligne
     public float lineWidth = 0.1f;   // Épaisseur de la ligne
@@ -24,7 +26,7 @@ public class Neux : MonoBehaviour
 
     public float smoothTime = 0.3f; // Temps pour atteindre la position
     private Vector3 velocity = Vector3.zero;
-    public List<Neux> list;
+    public List<Neux> liste;
     private bool drapeau_MoveTargetTowardsSelf=false;
     private Vector3 Target_MoveTargetTowardsSelf;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,13 +35,14 @@ public class Neux : MonoBehaviour
    // Définir l'épaisseur à la fin
 
 
-        foreach (Neux neux in list)
+        foreach (Neux neux in liste)
         {
             AddNeux(neux);
+            print("(neux,neux) : " + this+","+neux);
         }
         if (test)
         {
-            LanceMove(list[0]);
+            LanceMove(liste[0]);
         }
     }
 
@@ -60,25 +63,18 @@ public class Neux : MonoBehaviour
         Gravity();
         if (drapeau_MoveTargetTowardsSelf)
         {
-            print("drapeau");
-            print("timert : " + timer);  
-            test_game.transform.position=Vector3.SmoothDamp(test_game.transform.position, Target_MoveTargetTowardsSelf, ref velocity, smoothTime);
-            if (var)
-            {
-                timer = 0;
-                var=false;
-            }
             if (timer > -1)
             {
-                print("timer");
+                test_game.transform.position = Vector3.SmoothDamp(test_game.transform.position, Target_MoveTargetTowardsSelf, ref velocity, smoothTime);
 
                 timer += Time.deltaTime;
                 if (timer > timer_max)
                 {
-                    print("timer_finie");
                     test_game.transform.position = Target_MoveTargetTowardsSelf;
                     timer = -1;
-                    isrun=false;
+                    drapeau_MoveTargetTowardsSelf=false ;
+                    isRun = false;
+                    cibleNeux.isfinich();
                 }
             }
         }
@@ -134,34 +130,107 @@ public class Neux : MonoBehaviour
         }
     }
 
-
+    public void isfinich()
+    {
+        isRun = false;   
+    }
     public void destroy()
     {
-        if (gameObject.transform.childCount > 0 && gameObject.transform.GetChild(0).tag == "Brick")
+        if (!isRun)
         {
-            Destroy(gameObject.transform.GetChild(0).gameObject);
+            if (gameObject.transform.childCount > 0 && gameObject.transform.GetChild(0).tag == "Brick")
+            {
+                Destroy(gameObject.transform.GetChild(0).gameObject);
+            }
+            else
+            {
+                Debug.Log("Brick null ou pas une brick !");
+            }
         }
-        else
-        {
-            Debug.Log("Brick null ou pas une brick !");
-        }
+
     }
 
-    public void MoveTargetTowardsSelf(Vector3 target)
+    public void MoveTargetTowardsSelf(Vector3 target,Neux cibleNeux)
     {
         drapeau_MoveTargetTowardsSelf = true;
         Target_MoveTargetTowardsSelf = target;
         test_game = GetBrick();
+        this.cibleNeux = cibleNeux;
     }
     public void LanceMove(Neux neu)//Prend le numéraux du neux relier et envoie la Brick vers vous
     {
-        if (!isrun)
+        if (!isRun && !neu.isRun)
         {
-            timer = 0;
-            isrun = true;
-            neu.MoveTargetTowardsSelf(transform.position);
+            isRun = true;
+            print("_____________neu+this" + neu+this);
+            print("isrun : " + neu.isRun);
+            neu.isRun = true;
+            neu.timer = 0;
+            neu.MoveTargetTowardsSelf(transform.position, this);
             this.SetBrick(neu.GetBrick());
             neu.DestroyBrickFiliation();
+        }
+    }
+    public bool isDestroyFutur()
+    {
+        if (asBrick() && !isRun)
+        {
+            if (addColor() == "rouge")
+            {
+                for (int i = 0; i < liste.Capacity; i++)
+                {
+                    if (liste[i].addColor() == "rouge")
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            if (addColor() == "jaune")
+            {
+                for (int i = 0; i < liste.Capacity; i++)
+                {
+                    if (liste[i].asBrick())
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            if (addColor() == "vert")
+            {
+                for (int i = 0; i < liste.Capacity; i++)
+                {
+                    if (liste[i].addColor() == "vert")
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            if (addColor() == "bleu")
+            {
+                for (int i = 0; i < liste.Capacity; i++)
+                {
+                    if (liste[i].asBrick())
+                    {
+                        for (int j = 0; j < liste.Capacity; j++)
+                        {
+                            if (string.Equals(liste[i].addColor(), liste[j].addColor()))
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+            return false ;
+        }
+        else
+        {
+            return false;
         }
     }
     public void AddNeux(Neux neux)
@@ -172,12 +241,16 @@ public class Neux : MonoBehaviour
     {
         if (!asBrick() )
         {
-            foreach (var item in list)
+            print("asBrick");
+            foreach (var item in liste)
             {
+                print("asBrickn");
                 if (item.Number_sol > Number_sol)
                 {
+                    print("asBricknn");
                     if (item.asBrick())
                     {
+                        print("LanceMouve");
                         LanceMove(item);
                     }
                 }
