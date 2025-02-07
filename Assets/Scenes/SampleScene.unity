@@ -684,7 +684,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: liste.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: 'list.Array.data[0]'
@@ -705,7 +705,7 @@ PrefabInstance:
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: 'liste.Array.data[1]'
       value: 
-      objectReference: {fileID: 309978111}
+      objectReference: {fileID: 1327644209}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: 'liste.Array.data[2]'
       value: 
@@ -3472,7 +3472,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: liste.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: 'list.Array.data[0]'
@@ -4633,7 +4633,7 @@ PrefabInstance:
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: 'liste.Array.data[1]'
       value: 
-      objectReference: {fileID: 1014942264}
+      objectReference: {fileID: 1524915777}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: 'liste.Array.data[2]'
       value: 
@@ -4885,7 +4885,7 @@ PrefabInstance:
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: 'liste.Array.data[0]'
       value: 
-      objectReference: {fileID: 1376766897}
+      objectReference: {fileID: 731073035}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: 'liste.Array.data[1]'
       value: 
@@ -5624,7 +5624,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: liste.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: 'list.Array.data[0]'
