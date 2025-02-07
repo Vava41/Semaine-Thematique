@@ -269,8 +269,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -562,8 +566,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -699,8 +707,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -849,8 +861,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -1200,8 +1216,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -1327,8 +1347,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -1636,6 +1660,10 @@ PrefabInstance:
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: lineWidth
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
@@ -2257,8 +2285,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -2408,6 +2440,10 @@ PrefabInstance:
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: lineWidth
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
@@ -2563,8 +2599,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -2875,6 +2915,10 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
       value: 2
       objectReference: {fileID: 0}
@@ -3010,6 +3054,10 @@ PrefabInstance:
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: lineWidth
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
@@ -3585,6 +3633,10 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
       value: 2
       objectReference: {fileID: 0}
@@ -3743,8 +3795,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -4020,8 +4076,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -4229,6 +4289,10 @@ PrefabInstance:
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: lineWidth
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
@@ -4629,8 +4693,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -4761,6 +4829,10 @@ PrefabInstance:
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: lineWidth
       value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
@@ -5031,8 +5103,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -5332,6 +5408,10 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
       value: 2
       objectReference: {fileID: 0}
@@ -5520,8 +5600,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -5650,8 +5734,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -5811,8 +5899,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
@@ -6690,8 +6782,12 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
+      propertyPath: timer_max
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: Number_sol
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
       propertyPath: list.Array.size
