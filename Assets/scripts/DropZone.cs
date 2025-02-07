@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DropZone : MonoBehaviour
 {
-    private bool contain= false;
+    public bool contain= false;
     public string couleur;
     private void OnTriggerEnter(Collider other)
     {
@@ -10,6 +10,8 @@ public class DropZone : MonoBehaviour
         if (!contain)
         {
             other.transform.SetParent(this.gameObject.transform);
+            other.transform.position = transform.position;
+            other.transform.rotation = transform.rotation;
         }
     }
 
