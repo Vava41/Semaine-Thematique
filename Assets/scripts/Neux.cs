@@ -6,16 +6,18 @@ using static UnityEngine.GraphicsBuffer;
 
 [RequireComponent(typeof(LineRenderer))]
 
-
 public class Neux : MonoBehaviour
 {
-    //private Timer timer = -1;
+    public bool isWillDestroy = false;
+    public bool isRun = false;
+    public Neux cibleNeux;
+    public bool var = true;
+    private float timer = -1;
     public int timer_max;
     private List<LineRenderer> lineRenderers;
     public bool test;
     private GameObject test_game;
     public int Number_sol;
-    private static bool isrun = false;
     // Propriétés publiques pour modifier la ligne dans l'inspecteur
     public Material lineMaterial;    // Matériau de la ligne
     public float lineWidth = 0.1f;   // Épaisseur de la ligne
@@ -35,6 +37,7 @@ public class Neux : MonoBehaviour
         foreach (Neux neux in liste)
         {
             AddNeux(neux);
+            print("(neux,neux) : " + this + "," + neux);
         }
         if (test)
         {
@@ -56,22 +59,22 @@ public class Neux : MonoBehaviour
     // Update is called once per framet
     void Update()
     {
-        Gravity();
         if (drapeau_MoveTargetTowardsSelf)
         {
-            test_game.transform.position = Vector3.SmoothDamp(test_game.transform.position, Target_MoveTargetTowardsSelf, ref velocity, smoothTime);
-            //if (timer == 0)
-            //{
-            //    timer += Time.deltaTime;
-            //    if (timer > timer_max)
-            //    {
-            //        test_game.transform.position = Target_MoveTargetTowardsSelf;
-            //        timer = -1;
-            //        isrun = false;
-            //    }
-            //}
+            if (timer > -1)
+            {
+                test_game.transform.position = Vector3.SmoothDamp(test_game.transform.position, Target_MoveTargetTowardsSelf, ref velocity, smoothTime);
+                timer += Time.deltaTime;
+                if (timer > timer_max)
+                {
+                    test_game.transform.position = Target_MoveTargetTowardsSelf;
+                    timer = -1;
+                    drapeau_MoveTargetTowardsSelf = false;
+                    isRun = false;
+                    cibleNeux.isfinich();
+                }
+            }
         }
-        Check();
     }
     public string addColor()
     {
@@ -124,7 +127,10 @@ public class Neux : MonoBehaviour
         }
     }
 
-
+    public void isfinich()
+    {
+        isRun = false;
+    }
     public void destroy()
     {
         if (gameObject.transform.childCount > 0 && gameObject.transform.GetChild(0).tag == "Brick")
@@ -137,21 +143,86 @@ public class Neux : MonoBehaviour
         }
     }
 
-    public void MoveTargetTowardsSelf(Vector3 target)
+    public void MoveTargetTowardsSelf(Vector3 target, Neux cibleNeux)
     {
         drapeau_MoveTargetTowardsSelf = true;
         Target_MoveTargetTowardsSelf = target;
         test_game = GetBrick();
+        this.cibleNeux = cibleNeux;
     }
     public void LanceMove(Neux neu)//Prend le numéraux du neux relier et envoie la Brick vers vous
     {
-        if (!isrun)
+        if (!neu.isRun)
         {
-            //ytimer = 0;
-            isrun = true;
-            neu.MoveTargetTowardsSelf(transform.position);
+            isRun = true;
+            print("isrun : " + neu.isRun);
+            neu.isRun = true;
+            neu.timer = 0;
+            neu.MoveTargetTowardsSelf(transform.position, this);
             this.SetBrick(neu.GetBrick());
             neu.DestroyBrickFiliation();
+        }
+    }
+    public bool isDestroyFutur()
+    {
+        if (asBrick())
+        {
+            if (addColor() == "rouge")
+            {
+                for (int i = 0; i < liste.Capacity; i++)
+                {
+                    if (liste[i].addColor() == "rouge")
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            if (addColor() == "jaune")
+            {
+                for (int i = 0; i < liste.Capacity; i++)
+                {
+                    if (liste[i].asBrick())
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+            if (addColor() == "vert")
+            {
+                for (int i = 0; i < liste.Capacity; i++)
+                {
+                    if (liste[i].addColor() == "vert")
+                    {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            if (addColor() == "bleu")
+            {
+                for (int i = 0; i < liste.Capacity; i++)
+                {
+                    if (liste[i].asBrick())
+                    {
+                        for (int j = 0; j < liste.Capacity; j++)
+                        {
+                            if (string.Equals(liste[i].addColor(), liste[j].addColor()))
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+                return false;
+            }
+            return false;
+        }
+        else
+        {
+            return false;
         }
     }
     public void AddNeux(Neux neux)
@@ -160,29 +231,19 @@ public class Neux : MonoBehaviour
     }
     public void Gravity()//A chaque moments
     {
-        if (!asBrick())
+        if (!asBrick() && !isRun)
         {
+            print("asBrick");
             foreach (var item in liste)
             {
                 if (item.Number_sol > Number_sol)
                 {
                     if (item.asBrick())
                     {
+                        print("LanceMouve");
                         LanceMove(item);
                     }
                 }
-            }
-        }
-    }
-
-    void Check()
-    {
-        for (int i = 0; i < liste.Capacity; i++)
-        {
-            if (liste[i].addColor() == "rouge" && addColor() == "rouge")
-            {
-                liste[i].destroy();
-                destroy();
             }
         }
     }

@@ -10,17 +10,18 @@ public class DropZone : MonoBehaviour
         if (!contain)
         {
             other.transform.SetParent(this.gameObject.transform);
-        }
-        if (other.CompareTag("Brick"))
-        {
-            other.transform.position = transform.position;
-            other.transform.rotation = transform.rotation;
-            contain = true;
+            if (other.CompareTag("Brick"))
+            {
+                
+                contain = true;
+            }
         }
     }
 
     private void OnTriggerStay(Collider other)
     {
+        other.transform.position = transform.position;
+        other.transform.rotation = transform.rotation;
         contain = true;
         other.transform.SetParent(this.gameObject.transform);
         if (contain == true)
