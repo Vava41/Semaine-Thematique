@@ -947,6 +947,7 @@ GameObject:
   - component: {fileID: 410087040}
   - component: {fileID: 410087042}
   - component: {fileID: 410087043}
+  - component: {fileID: 410087044}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1069,6 +1070,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8dbd9f245e5df9f4d8e04ca958b4acc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &410087044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 410087039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47be016a2f2d54443acc63749bfb6c83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  liste:
+  - {fileID: 1380675433}
+  - {fileID: 1524915777}
+  - {fileID: 731073035}
+  - {fileID: 1492078614}
+  - {fileID: 1989618175}
+  - {fileID: 1787683058}
+  - {fileID: 1615286793}
+  - {fileID: 1651275207}
+  - {fileID: 880843760}
+  - {fileID: 945732941}
+  - {fileID: 1370951521}
+  - {fileID: 419336460}
+  - {fileID: 1471829766}
+  - {fileID: 1418937106}
+  - {fileID: 244967635}
+  - {fileID: 2139928916}
+  - {fileID: 1198543758}
+  - {fileID: 1327644209}
+  - {fileID: 1058023740}
+  - {fileID: 1014942264}
+  - {fileID: 1376766897}
+  - {fileID: 48363970}
+  - {fileID: 1180828107}
+  - {fileID: 309978111}
 --- !u!114 &419336460 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1619067872796694166, guid: c5cb1ac6bf6953b4b8bec106c2595538, type: 3}
