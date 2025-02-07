@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (Neux neux in liste)
         {
-            print(neux);
+            print("neux : "+neux);
             neux.isWillDestroy = neux.isDestroyFutur();
         }
         foreach (Neux neux in liste)

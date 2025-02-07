@@ -9,6 +9,9 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Neux : MonoBehaviour
 {
+
+
+    public bool asBrick;
     public bool isWillDestroy = false;
     public bool isRun = false;
     public Neux cibleNeux;
@@ -46,9 +49,16 @@ public class Neux : MonoBehaviour
         }
     }
 
-    public bool asBrick()
+    public bool AsBrick()
     {
-        return (gameObject.transform.childCount > 0 && gameObject.transform.GetChild(0).tag == "Brick");
+        foreach (Transform game in transform)
+        {
+            if (game.tag == "Brick")
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     /*public string addColorNeux(Neux neux_)
@@ -60,6 +70,7 @@ public class Neux : MonoBehaviour
     // Update is called once per framet
     void Update()
     {
+        asBrick = AsBrick();
         Gravity();
         if (drapeau_MoveTargetTowardsSelf)
         {
@@ -101,9 +112,12 @@ public class Neux : MonoBehaviour
 
     public GameObject GetBrick()//retourne la Brick possèder
     {
-        if (gameObject.transform.childCount > 0 && gameObject.transform.GetChild(0).tag == "Brick")
+        foreach (Transform game in transform)
         {
-            return gameObject.transform.GetChild(0).gameObject;
+            if (game.tag == "Brick")
+            {
+                return game.gameObject;
+            }
         }
         return null;
     }
@@ -160,6 +174,7 @@ public class Neux : MonoBehaviour
     {
         if (!isRun && !neu.isRun)
         {
+            print("tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt");
             isRun = true;
             neu.isRun = true;
             neu.timer = 0;
@@ -170,7 +185,7 @@ public class Neux : MonoBehaviour
     }
     public bool isDestroyFutur()
     {
-        if (asBrick() && !isRun)
+        if (AsBrick() && !isRun)
         {
             if (addColor() == "rouge")
             {
@@ -188,7 +203,7 @@ public class Neux : MonoBehaviour
             {
                 for (int i = 0; i < liste.Capacity; i++)
                 {
-                    if (liste[i].asBrick())
+                    if (liste[i].AsBrick())
                     {
                         return false;
                     }
@@ -210,13 +225,17 @@ public class Neux : MonoBehaviour
             {
                 for (int i = 0; i < liste.Capacity; i++)
                 {
-                    if (liste[i].asBrick())
+                    if (liste[i].AsBrick())
                     {
                         for (int j = 0; j < liste.Capacity; j++)
                         {
-                            if (string.Equals(liste[i].addColor(), liste[j].addColor()))
+                            if (liste[j].AsBrick())
                             {
-                                return true;
+                                if (!string.Equals(liste[i].addColor(), liste[j].addColor()))
+                                {
+                                    print("liste[i].addColor() : " + liste[i] + "," + liste[i].addColor() + "," + liste[i].AsBrick() + "  liste[j].addColor()  :  " + liste[j] + "," + liste[j].addColor() + "," + liste[i].AsBrick());
+                                    return false;
+                                }
                             }
                         }
                     }
@@ -236,13 +255,13 @@ public class Neux : MonoBehaviour
     }
     public void Gravity()//A chaque moments
     {
-        if (!asBrick())
+        if (!AsBrick())
         {
             foreach (var item in liste)
             {
                 if (item.Number_sol > Number_sol)
                 {
-                    if (item.asBrick())
+                    if (item.AsBrick())
                     {
                         LanceMove(item);
                     }

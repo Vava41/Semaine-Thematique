@@ -6,6 +6,7 @@ TagManager:
   tags:
   - bloc
   - Brick
+  - "Sph\xE8re"
   layers:
   - Default
   - TransparentFX
