@@ -70,6 +70,10 @@ public class Neux : MonoBehaviour
     // Update is called once per framet
     void Update()
     {
+        if (AsBrick())
+        {
+            gameObject.GetComponent<DropZone>().contain = true;
+        }
         asBrick = AsBrick();
         Gravity();
         if (drapeau_MoveTargetTowardsSelf)
@@ -234,7 +238,7 @@ public class Neux : MonoBehaviour
                                 if (!string.Equals(liste[i].addColor(), liste[j].addColor()))
                                 {
                                     print("liste[i].addColor() : " + liste[i] + "," + liste[i].addColor() + "," + liste[i].AsBrick() + "  liste[j].addColor()  :  " + liste[j] + "," + liste[j].addColor() + "," + liste[i].AsBrick());
-                                    return false;
+                                    return true;
                                 }
                             }
                         }
