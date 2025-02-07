@@ -10,11 +10,8 @@ public class DropZone : MonoBehaviour
         if (!contain)
         {
             other.transform.SetParent(this.gameObject.transform);
-            if (other.CompareTag("Brick"))
-            {
-                
-                contain = true;
-            }
+            other.attachedRigidbody.isKinematic = true;
+            other.attachedRigidbody.useGravity = false;
         }
     }
 
@@ -32,6 +29,8 @@ public class DropZone : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+        other.attachedRigidbody.isKinematic = false;
+        other.attachedRigidbody.useGravity = true;
         contain = false;
         other.transform.SetParent(null);
     }
